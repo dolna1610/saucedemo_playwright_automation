@@ -1,4 +1,4 @@
-# FirstTrip OTA B2C
+# SauceDemo 
 
 ## Getting started
 
