@@ -1,0 +1,91 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.firstTrip'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.microsoft.playwright:playwright:1.49.0'
+    implementation 'org.apache.commons:commons-lang3:3.13.0'
+    implementation 'org.slf4j:slf4j-simple:2.0.9'
+    implementation 'org.projectlombok:lombok:1.18.34'
+
+    testImplementation 'org.testng:testng:7.10.2'
+    testImplementation 'org.projectlombok:lombok:1.18.34'
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
+    testImplementation 'com.thedeanda:lorem:2.2'
+}
+
+tasks.register("seleniumGridUp", Exec) {
+    group = 'selenium'
+    workingDir 'playwright-selenium-grid'
+    commandLine 'sh', '-c', 'command -v docker-compose >/dev/null 2>&1 || { echo "docker-compose not found! Install docker-compose."; exit 1; } && docker-compose up -d'
+}
+
+tasks.register("seleniumGridDown", Exec) {
+    group = 'selenium'
+    workingDir 'playwright-selenium-grid'
+    commandLine 'sh', '-c', 'command -v docker-compose >/dev/null 2>&1 || { echo "docker-compose not found! Install docker-compose."; exit 1; } && docker-compose down'
+}
+
+test {
+    doFirst {
+        if (project.hasProperty('remote')) {
+            environment "SELENIUM_REMOTE_URL", System.getenv("SELENIUM_REMOTE_URL") ? System.getenv("SELENIUM_REMOTE_URL") : "http://localhost:4444"
+        }
+    }
+
+    useTestNG() {
+        if (project.hasProperty('testng.suites')) {
+            project.property('testng.suites').toString().split(',').each { suite ->
+                System.out.println('Running suite: ' + suite)
+                suites 'src/test/resources/' + suite + '-suite.xml'
+            }
+        }
+
+        if (project.hasProperty('testng.parallel')) {
+            parallel project.property('testng.parallel') as String
+        }
+
+        if (project.hasProperty('testng.threadCount')) {
+            threadCount project.property('testng.threadCount') as int
+        }
+
+        if (project.hasProperty('testng.groups')) {
+            includeGroups project.property('testng.groups').toString().split(',')
+        }
+    }
+
+    if (project.hasProperty('channel')) {
+        systemProperty('channel', project.property('channel'))
+    }
+
+    if (project.hasProperty('chrome')) {
+        systemProperty('browser', 'chromium')
+    }
+    if (project.hasProperty('firefox')) {
+        systemProperty('browser', 'firefox')
+    }
+    if (project.hasProperty('edge')) {
+        systemProperty('browser', 'edge')
+    }
+
+    if (project.hasProperty('credentials')) {
+        systemProperty('external.credentials.file', project.property('credentials'))
+    }
+}
+
+clean {
+    delete '.auth'
+}
+
+wrapper {
+    gradleVersion = '8.12'
+}
