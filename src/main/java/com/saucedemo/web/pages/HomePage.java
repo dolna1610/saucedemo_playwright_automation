@@ -3,7 +3,6 @@ package com.saucedemo.web.pages;
 import com.microsoft.playwright.Locator;
 import com.saucedemo.web.components.SearchFormNavigationBar;
 import com.saucedemo.web.components.Slider;
-import com.saucedemo.web.components.WelcomeModal;
 import com.microsoft.playwright.Page;
 
 public class HomePage extends BasePage {
@@ -31,7 +30,4 @@ public class HomePage extends BasePage {
         return new Slider(page.locator(".flex.h-fit.justify-center"));
     }
 
-    public WelcomeModal getWelcomeModal() {
-        return new WelcomeModal(page.locator(".fixed.left-0.top-0.z-60"));
-    }
 }

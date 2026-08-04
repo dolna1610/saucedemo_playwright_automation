@@ -1,9 +1,6 @@
 package com.saucedemo.web.pages;
 
-import com.saucedemo.web.components.ErrorMessage;
-import com.saucedemo.web.components.Footer;
-import com.saucedemo.web.components.Topbar;
-import com.saucedemo.web.components.WelcomeModal;
+import com.saucedemo.web.components.*;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
@@ -48,23 +45,11 @@ public abstract class BasePage {
         return new Footer(page.locator("#footer"));
     }
 
-    protected Locator getDrawerLocator() {
-        return page.locator(".drawer");
-    }
-
     public boolean isMobile() {
         return page.viewportSize().width < 768;
     }
 
-    public Locator getTripsLocator() {
-        return page.locator(".flex-col.items-center.justify-center.px-3");
-    }
-
-    public Locator getWelcomeModalLocator() {
-        return page.locator(".fixed.left-0.top-0.z-60");
-    }
-
-    public WelcomeModal getWelcomeModal() {
-        return new WelcomeModal(getWelcomeModalLocator());
+    public Cart getCart() {
+        return new Cart(page.locator(".shopping_cart_link"));
     }
 }

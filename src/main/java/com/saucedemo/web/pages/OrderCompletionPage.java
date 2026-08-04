@@ -17,4 +17,9 @@ public class OrderCompletionPage extends BasePage{
     public String getUrl(){
         return "";
     }
+
+    public OrderCompletionPage clickBackHomeButton(){
+        page.locator("[data-test='back-to-products']").click();
+        return this;
+    }
 }

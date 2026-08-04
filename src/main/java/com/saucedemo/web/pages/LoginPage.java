@@ -47,8 +47,12 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public Locator getTitleLocator() {
-        return page.locator("Swag Labs");
+    public Locator getLoginButtonLocator() {
+        return page.locator("#login-button");
     }
 
+    public LoginPage waitForPageLoad() {
+        page.waitForSelector("#login-button");
+        return this;
+    }
 }

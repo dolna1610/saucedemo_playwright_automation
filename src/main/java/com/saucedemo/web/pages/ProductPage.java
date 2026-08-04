@@ -60,17 +60,27 @@ public class ProductPage extends BasePage{
         return this;
     }
 
-    public void addMultipleProductsToCart() {
+    public ProductPage addMultipleProductsToCart() {
         page.locator("[data-test='add-to-cart-sauce-labs-backpack']").click();
+        return this;
+    }
+
+    public ProductPage addAnotherProductToCart() {
         page.locator("[data-test='add-to-cart-sauce-labs-bike-light']").click();
+        return this;
     }
 
     public Locator getCartBadge() {
         return  page.locator("[data-test='shopping-cart-badge']");
     }
 
-    public void removeProductFromCart() {
-        page.locator("[data-test='add-to-cart-sauce-labs-backpack']").click();
+    public ProductPage removeProductFromCart() {
         page.locator("[data-test='remove-sauce-labs-backpack']").click();
+        return this;
+    }
+
+    public ProductPage removeAnotherProductFromCart() {
+        page.locator("[data-test='remove-sauce-labs-bike-light']").click();
+        return this;
     }
 }

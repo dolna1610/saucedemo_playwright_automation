@@ -21,6 +21,10 @@ public class PaymentSandboxPage extends BasePage {
         return "";
     }
 
+    public Locator getBkashPaymentOptionLocator() {
+        return page.locator(".flex.items-center.gap-2").getByText("bKash");
+    }
+
     public TextInputElement getBkashAccountNumberInput() {
         return new TextInputElement(page.locator(".input-numeric.form-input"));
     }

@@ -4,13 +4,8 @@ import com.microsoft.playwright.options.LoadState;
 import com.saucedemo.web.components.ProductInfo;
 import com.saucedemo.web.pages.ProductPage;
 import org.testng.annotations.Test;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
-import static org.testng.AssertJUnit.assertEquals;
 
 public class ProductTest extends BaseTest {
     @Test(groups = {"smoke"})
@@ -34,7 +29,6 @@ public class ProductTest extends BaseTest {
         ProductPage productPage = login();
 
         assertThat(productPage.getProductsHeading()).hasText("Products");
-
         assertThat(productPage.getProductCards()).hasCount(6);
 
         for (ProductInfo product : productPage.getProductDetails()) {

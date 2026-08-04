@@ -19,12 +19,20 @@ public class CartPage extends BasePage{
         return "/cart.html";
     }
 
-    public CartPage clickCartIcon() {
-        page.locator("[data-test='shopping-cart-link']").click();
-        return this;
-    }
-
     public Locator getCartHeading() {
         return page.locator(".title");
+    }
+
+    public Locator getContinueShoppingButton(){
+        return page.locator("[data-test='continue-shopping']");
+    }
+
+    public Locator getCheckoutButton(){
+        return page.locator("[data-test='checkout']");
+    }
+
+    public CheckoutPage clickCheckoutButton() {
+        page.locator("[data-test='checkout']").click();
+        return new CheckoutPage(page);
     }
 }

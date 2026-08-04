@@ -74,3 +74,6 @@ public class LoginTest extends BaseTest {
         assertThat(homePage.getTitle()).isVisible();
     }
 }
+
+
+

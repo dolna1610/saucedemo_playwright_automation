@@ -1,6 +1,7 @@
 package com.saucedemo.web.components;
 
 import com.microsoft.playwright.Locator;
+import com.saucedemo.web.pages.LoginPage;
 
 public abstract class BaseInputElement extends BaseComponent {
 
