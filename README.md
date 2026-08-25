@@ -600,7 +600,7 @@ Generate Test Report
 Publish Test Results
 ```
 
-The framework can be integrated with **GitLab CI/CD** for automated test execution.
+The framework is integrated with **GitHub Actions for CI/CD** and automated test execution.
 
 ---
 
