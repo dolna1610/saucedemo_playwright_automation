@@ -240,9 +240,9 @@ Handles logout functionality.
 
 The `enums` package contains predefined values used throughout the framework.
 
-### CourtesyTitle
+### SortOption
 
-Stores supported courtesy titles.
+Stores supported product sorting options such as name and price sorting.
 
 ### PaymentMethod
 
