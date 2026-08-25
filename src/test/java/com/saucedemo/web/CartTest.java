@@ -28,22 +28,32 @@ public class CartTest extends BaseTest {
     @Test(groups = {"smoke"})
     public void verifyAddMultipleProductsToCart() {
         ProductPage productPage = login();
+
         productPage.addMultipleProductsToCart();
-        assertThat(productPage.getCartBadge()).hasText("2");
+
+        assertThat(productPage.getCartBadge())
+                .hasText("2");
     }
 
     @Test(groups = {"smoke"})
     public void verifyRemoveProductFromCart() {
         ProductPage productPage = login();
+
         productPage.removeProductFromCart();
-        assertThat(productPage.getCartBadge()).not().isVisible();
+
+        assertThat(productPage.getCartBadge())
+                .not()
+                .isVisible();
     }
 
     @Test(groups = {"smoke"})
     public void verifyCartIconCount() {
         ProductPage productPage = login();
+
         productPage.addMultipleProductsToCart();
-        assertThat(productPage.getCartBadge()).hasText("2");
+
+        assertThat(productPage.getCartBadge())
+                .hasText("2");
     }
 
     @Test(groups = {"smoke"})

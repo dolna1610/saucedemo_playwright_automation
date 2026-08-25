@@ -3,14 +3,15 @@ package com.saucedemo.web.pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.saucedemo.web.components.ProductInfo;
-import com.saucedemo.web.components.SelectElement;
 
 import java.util.List;
 
-public class ProductPage extends BasePage{
-    public ProductPage(Page page){
+public class ProductPage extends BasePage {
+
+    public ProductPage(Page page) {
         super(page);
     }
+
     @Override
     public String getPageId() {
         return "";
@@ -21,13 +22,14 @@ public class ProductPage extends BasePage{
         return "/inventory.html";
     }
 
-    public Locator getProductsHeading(){
+    public Locator getProductsHeading() {
         return page.getByText("Products");
     }
 
-    public List<ProductInfo> getProductDetails(){
+    public List<ProductInfo> getProductDetails() {
         return page.locator(".inventory_item")
-                .all().stream()
+                .all()
+                .stream()
                 .map(ProductInfo::new)
                 .toList();
     }
@@ -56,31 +58,51 @@ public class ProductPage extends BasePage{
     }
 
     public ProductPage addSingleProductToCart() {
-        page.locator("[data-test='add-to-cart-sauce-labs-backpack']").click();
+        page.locator("[data-test='add-to-cart-sauce-labs-backpack']")
+                .click();
         return this;
     }
 
+    // ADD 2 PRODUCTS
     public ProductPage addMultipleProductsToCart() {
-        page.locator("[data-test='add-to-cart-sauce-labs-backpack']").click();
+        page.locator("[data-test='add-to-cart-sauce-labs-backpack']")
+                .click();
+
+        page.locator("[data-test='add-to-cart-sauce-labs-bike-light']")
+                .click();
+
         return this;
     }
 
     public ProductPage addAnotherProductToCart() {
-        page.locator("[data-test='add-to-cart-sauce-labs-bike-light']").click();
+        page.locator("[data-test='add-to-cart-sauce-labs-bike-light']")
+                .click();
         return this;
     }
 
     public Locator getCartBadge() {
-        return  page.locator("[data-test='shopping-cart-badge']");
+        return page.locator("[data-test='shopping-cart-badge']");
     }
 
+    // ADD THEN REMOVE
     public ProductPage removeProductFromCart() {
-        page.locator("[data-test='remove-sauce-labs-backpack']").click();
+
+        page.locator("[data-test='add-to-cart-sauce-labs-backpack']")
+                .click();
+
+        page.locator("[data-test='remove-sauce-labs-backpack']")
+                .click();
+
         return this;
     }
 
     public ProductPage removeAnotherProductFromCart() {
-        page.locator("[data-test='remove-sauce-labs-bike-light']").click();
+        page.locator("[data-test='remove-sauce-labs-bike-light']")
+                .click();
         return this;
+    }
+
+    public Locator getProductTitleLocator() {
+        return page.locator("[data-test='title']");
     }
 }

@@ -35,4 +35,8 @@ public class CartPage extends BasePage{
         page.locator("[data-test='checkout']").click();
         return new CheckoutPage(page);
     }
+
+    public Locator getCartTitleLocator() {
+        return page.locator("[data-test='title']");
+    }
 }

@@ -43,17 +43,25 @@ public class OrderCompletionTest extends BaseTest {
 
     @Test(groups = {"smoke"})
     public void verifyOrderCompletionMessage() {
-        String expectedMessage = "THANK YOU FOR YOUR ORDER";
+
+        String expectedMessage = "Thank you for your order!";
+
         String actualMessage = login()
-                .getCart().clickCartIcon()
+                .getCart()
+                .clickCartIcon()
                 .clickCheckoutButton()
                 .fillCheckoutFirstName("John")
                 .fillCheckoutLastName("Doe")
                 .fillCheckoutPostalCode("12345")
                 .clickCheckoutContinueButton()
                 .clickCheckoutFinishButton()
-                .getCheckoutCompleteHeading().textContent();
-        assert actualMessage.contains(expectedMessage) : "Expected message: " + expectedMessage + ", but got: " + actualMessage;
+                .getCheckoutCompleteHeading()
+                .textContent();
+
+        assert actualMessage != null;
+        assert actualMessage.trim().equals(expectedMessage)
+                : "Expected message: " + expectedMessage
+                + ", but got: " + actualMessage;
     }
 
     @Test(groups = {"smoke"})
@@ -84,16 +92,22 @@ public class OrderCompletionTest extends BaseTest {
 
     @Test(groups = {"smoke"})
     public void verifyOrderCompletionPageUrl() {
-        String expectedUrl = "https://www.saucedemo.com/checkout-complete.html";
+
+        String expectedUrl =
+                "https://www.saucedemo.com/checkout-complete.html";
+
         String actualUrl = login()
-                .getCart().clickCartIcon()
+                .addSingleProductToCart()
+                .clickCartIcon()
                 .clickCheckoutButton()
                 .fillCheckoutFirstName("John")
                 .fillCheckoutLastName("Doe")
                 .fillCheckoutPostalCode("12345")
                 .clickCheckoutContinueButton()
                 .clickCheckoutFinishButton()
-                .getUrl();
-        assert actualUrl.equals(expectedUrl) : "Expected URL: " + expectedUrl + ", but got: " + actualUrl;
+                .getCurrentUrl();
+
+        assert actualUrl.equals(expectedUrl)
+                : "Expected URL: " + expectedUrl + ", but got: " + actualUrl;
     }
 }

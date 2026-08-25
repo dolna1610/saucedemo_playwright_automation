@@ -33,6 +33,10 @@ public abstract class BasePage {
         return page.title();
     }
 
+    public String getCurrentUrl() {
+        return page.url();
+    }
+
     public Topbar getTopbar() {
         return new Topbar(page.getByText("Products"));
     }

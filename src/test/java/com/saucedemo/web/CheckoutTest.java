@@ -1,5 +1,6 @@
 package com.saucedemo.web;
 
+import com.saucedemo.web.pages.CartPage;
 import com.saucedemo.web.pages.CheckoutPage;
 import com.saucedemo.web.pages.ProductPage;
 import org.testng.annotations.Test;
@@ -51,12 +52,18 @@ public class CheckoutTest extends BaseTest {
     }
 
     @Test(groups = {"smoke"})
-    public void verifyCancelButtonFunctionality(){
+    public void verifyCancelButtonFunctionality() {
         ProductPage productPage = login();
-        CheckoutPage checkoutPage = productPage.getCart().clickCartIcon()
-                .clickCheckoutButton();
+
+        CartPage cartPage = productPage.getCart()
+                .clickCartIcon();
+
+        CheckoutPage checkoutPage = cartPage.clickCheckoutButton();
+
         checkoutPage.clickCancelButton();
-        assertThat(checkoutPage.getProductTitleLocator()).containsText("Products");
+
+        assertThat(cartPage.getCartTitleLocator())
+                .containsText("Your Cart");
     }
 
     @Test
