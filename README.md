@@ -1,128 +1,715 @@
-# SauceDemo 
+# 🎭 SauceDemo Playwright Automation Framework
 
-## Getting started
+A robust and maintainable **Web UI Automation Testing Framework** built using **Java, Playwright, Gradle, and TestNG**.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+This framework is designed using the **Page Object Model (POM)** architecture with reusable **Page Objects, UI Components, Utilities, Enums, Authentication Support, and TestNG Test Suites**.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it
-easy? [Use the template at the bottom](#editing-this-readme)!
+The framework automates major user journeys of the **SauceDemo** web application, including login, products, cart, checkout, payment, order completion, logout, and footer validations.
 
-## Add your files
+---
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file)
-  or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line)
-  or push an existing Git repository with the following command:
+## 🛠️ Technology Stack
 
+| Technology            | Purpose                       |
+| --------------------- | ----------------------------- |
+| **Java**              | Programming Language          |
+| **Playwright**        | Web UI Automation             |
+| **Gradle**            | Build & Dependency Management |
+| **TestNG**            | Test Execution & Assertions   |
+| **IntelliJ IDEA**     | Development IDE               |
+| **Git / GitLab**      | Version Control               |
+| **Page Object Model** | Framework Architecture        |
+
+---
+
+## ✨ Key Features
+
+* ✅ Java + Playwright automation
+* ✅ Page Object Model (POM)
+* ✅ Reusable UI Components
+* ✅ Base Page Architecture
+* ✅ Base Test Architecture
+* ✅ Authenticated Test Support
+* ✅ TestNG Test Execution
+* ✅ Smoke Test Suite
+* ✅ Regression Test Suite
+* ✅ Gradle Build Management
+* ✅ Configurable Browser Execution
+* ✅ Headed / Headless Execution
+* ✅ Reusable Credentials Management
+* ✅ Device-based Configuration
+* ✅ Cross-browser support
+* ✅ HTML Test Reports
+* ✅ CI/CD Ready
+
+---
+
+# 📂 Project Structure
+
+```text
+saucedemo-playwright-automation
+│
+├── src
+│   │
+│   ├── main
+│   │   │
+│   │   ├── java
+│   │   │   └── com.saucedemo.web
+│   │   │       │
+│   │   │       ├── components
+│   │   │       │   ├── BaseComponent
+│   │   │       │   ├── BaseInputElement
+│   │   │       │   ├── BaseLargeInputElement
+│   │   │       │   ├── Cart
+│   │   │       │   ├── ErrorMessage
+│   │   │       │   ├── Footer
+│   │   │       │   ├── PaymentConfirmationModal
+│   │   │       │   ├── PaymentInfoCard
+│   │   │       │   ├── ProductInfo
+│   │   │       │   ├── RequiredInputElement
+│   │   │       │   ├── SearchFormNavigationBar
+│   │   │       │   ├── SelectElement
+│   │   │       │   ├── Slider
+│   │   │       │   ├── TextInputElement
+│   │   │       │   └── Topbar
+│   │   │       │
+│   │   │       ├── enums
+│   │   │       │   ├── SortOption
+│   │   │       │   └── PaymentMethod
+│   │   │       │
+│   │   │       ├── pages
+│   │   │       │   ├── BasePage
+│   │   │       │   ├── CartPage
+│   │   │       │   ├── CheckoutPage
+│   │   │       │   ├── HomePage
+│   │   │       │   ├── LoginPage
+│   │   │       │   ├── LogoutPage
+│   │   │       │   ├── OrderCompletionPage
+│   │   │       │   ├── PaymentSandboxPage
+│   │   │       │   └── ProductPage
+│   │   │       │
+│   │   │       ├── utils
+│   │   │       │   ├── Credential
+│   │   │       │   ├── CredentialStore
+│   │   │       │   ├── Device
+│   │   │       │   ├── FileUtil
+│   │   │       │   └── TargetDevice
+│   │   │       │
+│   │   │       └── PlaywrightConfig
+│   │   │
+│   │   └── resources
+│   │       └── config.properties
+│   │
+│   └── test
+│       │
+│       ├── java
+│       │   └── com.saucedemo.web
+│       │       ├── BaseTest
+│       │       ├── BaseAuthenticatedTest
+│       │       ├── LoginTest
+│       │       ├── LogoutTest
+│       │       ├── HomeTest
+│       │       ├── ProductTest
+│       │       ├── CartTest
+│       │       ├── CheckoutTest
+│       │       ├── FooterTest
+│       │       └── OrderCompletionTest
+│       │
+│       └── resources
+│           ├── credentials.properties
+│           ├── smoke-suite.xml
+│           └── regression-suite.xml
+│
+├── .gitignore
+├── build.gradle
+├── settings.gradle
+├── gradlew
+├── gradlew.bat
+└── README.md
 ```
-cd existing_repo
-git remote add origin https://vcs.technonext.com/TechnoNext/test-automation/firsttrip-ota-b2c.git
-git branch -M master
-git push -uf origin master
+
+---
+
+# 🏗️ Framework Architecture
+
+The framework follows the **Page Object Model (POM)** design pattern.
+
+```text
+                    TestNG Test Classes
+                           │
+                           ▼
+             BaseTest / BaseAuthenticatedTest
+                           │
+                           ▼
+                      Page Objects
+                           │
+              ┌────────────┴────────────┐
+              ▼                         ▼
+        UI Components               Utilities
+              │                         │
+              └────────────┬────────────┘
+                           ▼
+                       Playwright
+                           │
+                           ▼
+                    SauceDemo Web App
 ```
 
-## Integrate with your tools
+---
 
-- [ ] [Set up project integrations](https://vcs.technonext.com/TechnoNext/test-automation/firsttrip-ota-b2c/-/settings/integrations)
+# 📦 Components
 
-## Collaborate with your team
+The `components` package contains reusable UI components.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+### BaseComponent
 
-## Test and Deploy
+Base class for reusable UI components.
 
-Use the built-in continuous integration in GitLab.
+### Input Components
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+* `BaseInputElement`
+* `BaseLargeInputElement`
+* `RequiredInputElement`
+* `TextInputElement`
 
-***
+These provide reusable behavior for different input fields.
 
-# Editing this README
+### UI Components
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to
-structure it however you want - this is just a starting point!). Thanks
-to [makeareadme.com](https://www.makeareadme.com/) for this template.
+* `Cart`
+* `ErrorMessage`
+* `Footer`
+* `Topbar`
+* `Slider`
+* `SelectElement`
+* `ProductInfo`
+* `SearchFormNavigationBar`
 
-## Suggestions for a good README
+### Payment Components
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are
-suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long
-is better than too short. If you think your README is too long, consider utilizing another form of documentation rather
-than cutting out information.
+* `PaymentInfoCard`
+* `PaymentConfirmationModal`
 
-## Name
+These components handle reusable payment-related UI elements.
 
-Choose a self-explaining name for your project.
+---
 
-## Description
+# 📄 Page Objects
 
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be
-unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your
-project, this is a good place to list differentiating factors.
+The `pages` package contains Page Object classes.
 
-## Badges
+### BasePage
 
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the
-project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Provides common functionality shared by different pages.
 
-## Visuals
+### LoginPage
 
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see
-GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Handles login-related actions and validations.
 
-## Installation
+### HomePage
 
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew.
-However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing
-specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a
-specific context like a particular programming language version or operating system or has dependencies that have to be
-installed manually, also add a Requirements subsection.
+Handles the main application/home page.
 
-## Usage
+### ProductPage
 
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of
-usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably
-include in the README.
+Handles product listing and product-related actions.
 
-## Support
+### CartPage
 
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address,
-etc.
+Handles shopping cart functionality.
 
-## Roadmap
+### CheckoutPage
 
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+Handles checkout information and order processing.
 
-## Contributing
+### PaymentSandboxPage
 
-State if you are open to contributions and what your requirements are for accepting them.
+Handles payment sandbox related functionality.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started.
-Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps
-explicit. These instructions could also be useful to your future self.
+### OrderCompletionPage
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce
-the likelihood that the changes inadvertently break something. Having instructions for running tests is especially
-helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+Handles order completion page validations.
 
-## Authors and acknowledgment
+### LogoutPage
 
-Show your appreciation to those who have contributed to the project.
+Handles logout functionality.
 
-## License
+---
 
-For open source projects, say how it is licensed.
+# 🔢 Enums
 
-## Project status
+The `enums` package contains predefined values used throughout the framework.
 
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has
-slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or
-owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+### CourtesyTitle
+
+Stores supported courtesy titles.
+
+### PaymentMethod
+
+Stores supported payment methods.
+
+Using enums helps reduce hard-coded values and improves code readability.
+
+---
+
+# 🔧 Utilities
+
+The `utils` package contains reusable helper classes.
+
+### Credential
+
+Represents user credential information.
+
+### CredentialStore
+
+Manages and provides stored credentials for test execution.
+
+### Device
+
+Represents device-related configuration.
+
+### TargetDevice
+
+Defines target device information for test execution.
+
+### FileUtil
+
+Provides reusable file-related utility operations.
+
+---
+
+# ⚙️ Playwright Configuration
+
+`PlaywrightConfig` manages Playwright-related configuration and browser setup.
+
+The framework can be configured for different execution modes and browsers.
+
+Example configuration:
+
+```properties
+browserType=chrome
+headless=false
+baseUrl=https://www.saucedemo.com/
+slowMo=1000
+```
+
+### Configuration
+
+| Property      | Description                           |
+| ------------- | ------------------------------------- |
+| `browserType` | Browser used for execution            |
+| `headless`    | Runs browser with or without UI       |
+| `baseUrl`     | Application base URL                  |
+| `slowMo`      | Adds delay between Playwright actions |
+
+---
+
+# 🔐 Authentication Support
+
+The framework includes:
+
+```text
+BaseTest
+BaseAuthenticatedTest
+```
+
+`BaseTest` provides the common test setup and teardown.
+
+`BaseAuthenticatedTest` is used when a test requires an already authenticated session.
+
+This allows authenticated tests to reuse the session instead of performing login repeatedly.
+
+```text
+Login
+   ↓
+Authentication / Session
+   ↓
+BaseAuthenticatedTest
+   ↓
+Execute Test
+```
+
+---
+
+# 🧪 Automated Test Coverage
+
+The framework covers the major SauceDemo user journeys.
+
+## 🔐 Login
+
+`LoginTest`
+
+* Valid login
+* Invalid login
+* Login validation
+* Error message validation
+
+---
+
+## 🚪 Logout
+
+`LogoutTest`
+
+* Logout functionality
+* Logout page validation
+* User session validation
+
+---
+
+## 🏠 Home
+
+`HomeTest`
+
+* Home page validation
+* Product visibility
+* Page elements validation
+
+---
+
+## 🛍️ Products
+
+`ProductTest`
+
+* Product page validation
+* Product visibility
+* Product selection
+* Product information validation
+
+---
+
+## 🛒 Cart
+
+`CartTest`
+
+* Add product to cart
+* Remove product from cart
+* Cart item validation
+* Cart functionality
+
+---
+
+## 💳 Checkout
+
+`CheckoutTest`
+
+* Checkout page validation
+* Customer information
+* Required field validation
+* Checkout information
+* Order summary
+
+---
+
+## 💰 Payment
+
+Payment-related functionality is handled through:
+
+* `PaymentSandboxPage`
+* `PaymentInfoCard`
+* `PaymentConfirmationModal`
+* `PaymentMethod`
+
+---
+
+## 🎉 Order Completion
+
+`OrderCompletionTest`
+
+* Order completion validation
+* Success message validation
+* Completion page validation
+* Completion URL validation
+
+---
+
+## 🦶 Footer
+
+`FooterTest`
+
+* Footer visibility
+* Footer elements
+* Social media icons
+* External URL validation
+
+---
+
+# 🧪 TestNG Suites
+
+The framework contains separate TestNG suites for different testing purposes.
+
+## 🚀 Smoke Test Suite
+
+```text
+smoke-suite.xml
+```
+
+Used to execute critical and high-priority test scenarios.
+
+---
+
+## 🔄 Regression Test Suite
+
+```text
+regression-suite.xml
+```
+
+Used to execute a broader set of automated test scenarios after application changes.
+
+---
+
+# 📋 Prerequisites
+
+Before running this project, install:
+
+* Java JDK 17 or higher
+* IntelliJ IDEA
+* Git
+* Internet connection
+
+### Check Java
+
+```bash
+java -version
+```
+
+### Check Git
+
+```bash
+git --version
+```
+
+---
+
+# 🚀 Getting Started
+
+## 1. Clone the Repository
+
+```bash
+git clone <repository-url>
+```
+
+## 2. Navigate to the Project
+
+```bash
+cd saucedemo-playwright-automation
+```
+
+## 3. Install Playwright Browsers
+
+### Windows
+
+```bash
+gradlew.bat playwrightInstall
+```
+
+### Linux / macOS
+
+```bash
+./gradlew playwrightInstall
+```
+
+---
+
+# ▶️ Running Tests
+
+## Run All Tests
+
+### Windows
+
+```bash
+gradlew.bat test
+```
+
+### Linux / macOS
+
+```bash
+./gradlew test
+```
+
+---
+
+## Run Smoke Suite
+
+```bash
+gradlew.bat test -DsuiteXmlFile=smoke-suite.xml
+```
+
+---
+
+## Run Regression Suite
+
+```bash
+gradlew.bat test -DsuiteXmlFile=regression-suite.xml
+```
+
+---
+
+# 🌐 Browser Support
+
+Playwright supports multiple browsers.
+
+The framework can be configured to run tests on:
+
+* 🌐 Chrome
+* 🌐 Chromium
+* 🦊 Firefox
+* 🧭 WebKit
+
+---
+
+# 📊 Test Reports
+
+After test execution, Gradle generates an HTML test report.
+
+Report location:
+
+```text
+build/reports/tests/test/index.html
+```
+
+The report contains:
+
+* ✅ Passed Tests
+* ❌ Failed Tests
+* ⏭️ Skipped Tests
+* ⏱️ Execution Details
+
+Open the `index.html` file in a browser to view the report.
+
+---
+
+# 🔄 CI/CD
+
+The framework is ready for CI/CD integration.
+
+A typical pipeline can follow:
+
+```text
+Checkout Code
+      ↓
+Setup Java
+      ↓
+Setup Gradle
+      ↓
+Install Playwright Browsers
+      ↓
+Execute TestNG Tests
+      ↓
+Generate Test Report
+      ↓
+Publish Test Results
+```
+
+The framework can be integrated with **GitLab CI/CD** for automated test execution.
+
+---
+
+# 🔧 Git Workflow
+
+### Check Current Status
+
+```bash
+git status
+```
+
+### Pull Latest Code
+
+```bash
+git pull
+```
+
+### Add Changes
+
+```bash
+git add .
+```
+
+### Commit Changes
+
+```bash
+git commit -m "Updated automation tests"
+```
+
+### Push Changes
+
+```bash
+git push
+```
+
+---
+
+# 🔄 Development Workflow
+
+```text
+        Pull Latest Code
+                ↓
+       Develop / Update Test
+                ↓
+         Run Tests Locally
+                ↓
+        Analyze Test Results
+                ↓
+          Fix Test Failures
+                ↓
+             git add
+                ↓
+           git commit
+                ↓
+             git push
+```
+
+---
+
+# 🎯 Framework Objectives
+
+The main objectives of this framework are:
+
+* Reduce manual testing effort
+* Increase automation coverage
+* Improve test execution speed
+* Reduce code duplication
+* Create reusable components
+* Maintain clean and readable automation code
+* Simplify test maintenance
+* Support scalable automation
+* Support multiple browsers
+* Enable CI/CD execution
+
+---
+
+# 🔮 Future Enhancements
+
+Potential future improvements include:
+
+* [ ] Parallel test execution
+* [ ] Screenshot capture on failure
+* [ ] Video recording for failed tests
+* [ ] Advanced test reporting
+* [ ] Retry mechanism
+* [ ] Cross-browser parallel execution
+* [ ] Environment-based configuration
+* [ ] API automation integration
+
+---
+
+# 👨‍💻 Project Information
+
+**Project:** SauceDemo Playwright Automation
+
+**Automation Framework:** Playwright
+
+**Language:** Java
+
+**Build Tool:** Gradle
+
+**Test Framework:** TestNG
+
+**Architecture:** Page Object Model (POM)
+
+---
+
+## ❤️ Built For
+
+**Software Quality Assurance & Test Automation**
+
+Built with **Java + Playwright + Gradle + TestNG**.
