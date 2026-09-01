@@ -152,7 +152,7 @@ The framework follows the **Page Object Model (POM)** design pattern.
                        Playwright
                            │
                            ▼
-                    SauceDemo Web App
+                    SauceDemo Web
 ```
 
 ---
