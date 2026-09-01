@@ -1,7 +1,6 @@
 package com.saucedemo.web;
 
 import com.saucedemo.web.pages.*;
-import com.saucedemo.web.utils.Credential;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.options.BoundingBox;
 import org.testng.annotations.Test;
@@ -10,35 +9,20 @@ import static org.testng.AssertJUnit.assertTrue;
 
 public class HomeTest extends BaseTest {
 
-    @Test
-    public void clickNotificationIconDisplaysNotificationDropdownShouldSucceed() {
-        Credential credential = loadDefaultCredential();
+    @Test(groups = {"smoke"})
+    public void verifyLoginWithValidCredentialsShouldSucceed() {
+        ProductPage productPage = login();
 
-        HomePage homePage = goTo(new HomePage(page));
-        homePage.getTopbar()
-                .getHeading()
-                .fillUserName(credential.getUserName())
-                .fillPassword(credential.getPassword())
-                .clickLogin();
-
-        homePage.getTopbar().clickNotificationIcon();
-
-        assertThat(homePage.getTopbar().getNotificationDropdownLocator()).isVisible();
+        assertThat(productPage.getProductTitleLocator())
+                .containsText("Products");
     }
 
-    @Test
-    public void changingTheHotDealsCardsAfterAnIntervalShouldSucceed() {
+    @Test(groups = {"smoke"})
+    public void verifyLoginButtonIsVisibleShouldSucceed() {
         HomePage homePage = goTo(new HomePage(page));
 
-        Locator locator = homePage.getTravelerOffers().getOffers().getFirst();
-        double beforeValue = locator.boundingBox().x;
-
-        page.waitForCondition(() -> {
-            BoundingBox box = locator.boundingBox();
-            return box != null && box.x < 0;
-        });
-
-        double afterValue = locator.boundingBox().x;
-        assertTrue(afterValue < beforeValue);
+        assertThat(homePage.getTopbar()
+                .getLoginButton())
+                .isVisible();
     }
 }

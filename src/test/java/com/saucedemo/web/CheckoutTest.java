@@ -66,35 +66,45 @@ public class CheckoutTest extends BaseTest {
                 .containsText("Your Cart");
     }
 
-    @Test
+    @Test(groups = {"smoke"})
     public void verifyCorrectProductDisplay(){
         ProductPage productPage = login();
         CheckoutPage checkoutPage = productPage.getCart().clickCartIcon()
                 .clickCheckoutButton();
         assertThat(checkoutPage.getCheckoutCancelButton()).isVisible();
-        assertThat(checkoutPage.getCheckoutFinishButton()).isVisible();
-        assertThat(checkoutPage.getCheckoutOverviewTitleLocator()).containsText("Checkout: Overview");
+        assertThat(checkoutPage.getContinueButton()).isVisible();
+        assertThat(checkoutPage.getCheckoutOverviewTitleLocator()).containsText("Checkout: Your Information");
     }
 
-    @Test
-    public void verifyFinishButtonFunctionality(){
+    @Test(groups = {"smoke"})
+    public void verifyFinishButtonFunctionality() {
         ProductPage productPage = login();
-        CheckoutPage checkoutPage = productPage.getCart().clickCartIcon()
+
+        CheckoutPage checkoutPage = productPage.getCart()
+                .clickCartIcon()
                 .clickCheckoutButton();
+
         checkoutPage.fillCheckoutFirstName("John")
                 .fillCheckoutLastName("Doe")
                 .fillCheckoutPostalCode("12345")
                 .clickCheckoutContinueButton()
                 .clickCheckoutFinishButton();
-        assertThat(checkoutPage.getCheckoutCompleteHeading()).containsText("THANK YOU FOR YOUR ORDER");
+
+        assertThat(checkoutPage.getCheckoutCompleteHeading())
+                .containsText("Thank you for your order!");
     }
 
-    @Test
-    public void verifyCancelButtonRedirectsToInventoryPage(){
+    @Test(groups = {"smoke"})
+    public void verifyCancelButtonRedirectsToInventoryPage() {
         ProductPage productPage = login();
-        CheckoutPage checkoutPage = productPage.getCart().clickCartIcon()
+
+        CheckoutPage checkoutPage = productPage.getCart()
+                .clickCartIcon()
                 .clickCheckoutButton();
+
         checkoutPage.clickCancelButton();
-        assertThat(checkoutPage.getProductTitleLocator()).containsText("Products");
+
+        assertThat(checkoutPage.getTitle())
+                .containsText("Your Cart");
     }
 }

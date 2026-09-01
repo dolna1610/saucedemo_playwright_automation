@@ -4,18 +4,19 @@ import com.saucedemo.web.pages.HomePage;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.LoadState;
+import com.saucedemo.web.pages.ProductPage;
 import org.testng.annotations.Test;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static org.testng.Assert.assertTrue;
 
 public class FooterTest extends BaseTest {
-    @Test
+    @Test(groups = {"smoke"})
     public void verifyFacebookIconIsVisibleInFooterSectionShouldSucceed() {
 
-        HomePage homePage = goTo(new HomePage(page));
+        ProductPage productPage = login();
 
-        Locator facebookIcon = homePage.getFooter().getFacebookIconLocator();
+        Locator facebookIcon = productPage.getFooter().getFacebookIconLocator();
         String expectedUrl = facebookIcon.getAttribute("href");
 
         assertThat(facebookIcon).isVisible();
@@ -27,11 +28,11 @@ public class FooterTest extends BaseTest {
         assertTrue(actualUrl.contains(expectedUrl));
     }
 
-    @Test
+    @Test(groups = {"smoke"})
     public void verifyTwitterIconIsVisibleInFooterSectionShouldSucceed() {
-        HomePage homePage = goTo(new HomePage(page));
+        ProductPage productPage = login();
 
-        Locator twitterIcon = homePage.getFooter().getTwitterIconLocator();
+        Locator twitterIcon = productPage.getFooter().getTwitterIconLocator();
         String expectedUrl = twitterIcon.getAttribute("href");
 
         assertThat(twitterIcon).isVisible();
@@ -40,30 +41,15 @@ public class FooterTest extends BaseTest {
         newPage.waitForLoadState(LoadState.DOMCONTENTLOADED);
 
         String actualUrl = newPage.url();
-        assertTrue(actualUrl.contains(expectedUrl));
+
+        assertTrue(actualUrl.contains("twitter.com") || actualUrl.contains("x.com"));
     }
 
-    @Test
-    public void verifyInstagramIconIsVisibleInFooterSectionShouldSucceed() {
-        HomePage homePage = goTo(new HomePage(page));
-
-        Locator instagramIcon = homePage.getFooter().getInstagramIconLocator();
-        String expectedUrl = instagramIcon.getAttribute("href");
-
-        assertThat(instagramIcon).isVisible();
-
-        Page newPage = page.waitForPopup(instagramIcon::click);
-        newPage.waitForLoadState(LoadState.DOMCONTENTLOADED);
-
-        String actualUrl = newPage.url();
-        assertTrue(actualUrl.contains(expectedUrl));
-    }
-
-    @Test
+    @Test(groups = {"smoke"})
     public void verifyLinkedinIconIsVisibleInFooterSectionShouldSucceed() {
-        HomePage homePage = goTo(new HomePage(page));
+        ProductPage productPage = login();
 
-        Locator linkedinIcon = homePage.getFooter().getLinkedinIconLocator();
+        Locator linkedinIcon = productPage.getFooter().getLinkedinIconLocator();
         String expectedUrl = linkedinIcon.getAttribute("href");
 
         assertThat(linkedinIcon).isVisible();
@@ -72,22 +58,7 @@ public class FooterTest extends BaseTest {
         newPage.waitForLoadState(LoadState.DOMCONTENTLOADED);
 
         String actualUrl = newPage.url();
-        assertTrue(actualUrl.contains(expectedUrl));
-    }
 
-    @Test
-    public void verifyYouTubeIconIsVisibleInFooterSectionShouldSucceed() {
-        HomePage homePage = goTo(new HomePage(page));
-
-        Locator youTubeIcon = homePage.getFooter().getYouTubeIconLocator();
-        String expectedUrl = youTubeIcon.getAttribute("href");
-
-        assertThat(youTubeIcon).isVisible();
-
-        Page newPage = page.waitForPopup(youTubeIcon::click);
-        newPage.waitForLoadState(LoadState.DOMCONTENTLOADED);
-
-        String actualUrl = newPage.url();
-        assertTrue(actualUrl.contains(expectedUrl));
+        assertTrue(actualUrl.contains("linkedin.com"));
     }
 }

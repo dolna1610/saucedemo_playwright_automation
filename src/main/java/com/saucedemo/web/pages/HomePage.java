@@ -4,6 +4,7 @@ import com.microsoft.playwright.Locator;
 import com.saucedemo.web.components.SearchFormNavigationBar;
 import com.saucedemo.web.components.Slider;
 import com.microsoft.playwright.Page;
+import com.saucedemo.web.components.Topbar;
 
 public class HomePage extends BasePage {
     public HomePage(Page page) {
@@ -26,7 +27,11 @@ public class HomePage extends BasePage {
         return new SearchFormNavigationBar(page.locator("div.z-20.top-0"));
     }
 
-    public Slider getTravelerOffers() {
+    public Topbar getTopbar() {
+        return new Topbar(page.locator("body"));
+    }
+
+    public Slider getOffers() {
         return new Slider(page.locator(".flex.h-fit.justify-center"));
     }
 

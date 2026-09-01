@@ -68,6 +68,10 @@ public class CheckoutPage extends BasePage{
         return page.locator("[data-test='finish']");
     }
 
+    public Locator getContinueButton(){
+        return page.locator("#continue");
+    }
+
     public CheckoutPage waitForPageLoad() {
         page.waitForURL("**/checkout-step-one.html");
         return this;
@@ -95,6 +99,10 @@ public class CheckoutPage extends BasePage{
 
     public Locator getProductTitleLocator() {
         return page.locator(".inventory_item_name");
+    }
+
+    public Locator getTitle(){
+        return page.locator(".title");
     }
 
     public Locator getErrorMessageLocator() {

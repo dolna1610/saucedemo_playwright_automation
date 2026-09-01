@@ -21,17 +21,27 @@ public class Topbar extends BaseComponent {
         getProductsLocator().click();
         return this;
     }
-
-    public Locator getPasswordField() {
-        return element.locator("#password");
+    public Topbar fillUserName(String name) {
+        element.locator("#user-name").fill(name);
+        return this;
     }
 
-    public void clickSignOut() {
-        element.locator(".flex .w-full.border-brand-tint.first\\:border-none").nth(2).click();
+    public Topbar fillPassword(String password) {
+        element.locator("#password").fill(password);
+        return this;
     }
 
-    public void clickNotificationIcon() {
-        element.getByTestId("view-notification").locator(".cursor-pointer > img").first().click();
+    public Topbar clickLogin() {
+        element.locator("#login-button").click();
+        return this;
+    }
+
+    public Locator getErrorMessage() {
+        return element.locator("[data-test='error']");
+    }
+
+    public Locator getLoginButton() {
+        return element.locator("#login-button");
     }
 
     public Locator getNotificationDropdownLocator() {

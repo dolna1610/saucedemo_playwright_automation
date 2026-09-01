@@ -46,7 +46,7 @@ public abstract class BasePage {
     }
 
     public Footer getFooter() {
-        return new Footer(page.locator("#footer"));
+        return new Footer(page.locator(".footer"));
     }
 
     public boolean isMobile() {
