@@ -80,6 +80,10 @@ test {
     if (project.hasProperty('credentials')) {
         systemProperty('external.credentials.file', project.property('credentials'))
     }
+
+    if (project.hasProperty('headless')) {
+        systemProperty('headless', project.property('headless'))
+    }
 }
 
 clean {

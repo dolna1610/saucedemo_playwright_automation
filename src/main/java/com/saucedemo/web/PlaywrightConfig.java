@@ -71,7 +71,12 @@ public class PlaywrightConfig {
         return config.getProperty("baseUrl");
     }
 
-    public boolean isHeadless() {
+    /*public boolean isHeadless() {
         return Boolean.parseBoolean(config.getProperty("headless"));
+    }*/
+    public boolean isHeadless() {
+        return System.getProperty("headless") != null
+                ? Boolean.parseBoolean(System.getProperty("headless"))
+                : Boolean.parseBoolean(config.getProperty("headless"));
     }
 }
