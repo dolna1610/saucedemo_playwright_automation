@@ -25,10 +25,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Install Playwright browsers
-        run: ./gradlew playwrightInstall
+        run: ./gradlew --no-daemon playwrightInstall
 
       - name: Install Playwright browser dependencies
-        run: sudo ./gradlew playwrightInstallDeps
+        run: sudo ./gradlew --no-daemon playwrightInstallDeps
 
       - name: Run tests
-        run: ./gradlew test
+        run: ./gradlew --no-daemon test
