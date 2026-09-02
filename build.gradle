@@ -95,6 +95,15 @@ tasks.register("playwrightInstall", JavaExec) {
     args 'install'
 }
 
+tasks.register("playwrightInstallDeps", JavaExec) {
+    group = "playwright"
+    description = "Install Playwright browser dependencies"
+
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.microsoft.playwright.CLI'
+    args 'install-deps'
+}
+
 wrapper {
     gradleVersion = '8.12'
 }

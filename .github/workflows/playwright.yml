@@ -27,5 +27,8 @@ jobs:
       - name: Install Playwright browsers
         run: ./gradlew playwrightInstall
 
+      - name: Install Playwright browser dependencies
+        run: sudo ./gradlew playwrightInstallDeps
+
       - name: Run tests
         run: ./gradlew clean test
